@@ -6,21 +6,16 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
  * * @param {Promise<Response>} promise - Promesa de una petición fetch.
  * @returns {Promise<{data: any, error: string|null}>} Objeto con los datos o el mensaje de error.
  */
-const handleResponse = async (promise) => {
-  try {
-    const response = await promise;
+const handleResponse = async (response) => {
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
     
-    if (!response.ok) {
-     
-      return { data: null, error: `Error ${response.status}: ${response.statusText}` };
-    }
-
-    const data = await response.json();
-    return { data, error: null };
-  } catch (err) {
-    
-    return { data: null, error: "Error de conexión o red" };
+    const message = JSON.stringify(errorData.details || errorData.error || "Error desconocido");
+    return { data: null, error: message };
   }
+
+  const data = await response.json();
+  return { data, error: null };
 };
 
 /**
@@ -60,13 +55,15 @@ export const submitApplication = async (submitData) => {
  const response= await  fetch(`${BASE_URL}/api/candidate/apply-to-job`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+       "Content-Type": "application/json",
       },
       body: JSON.stringify(submitData),
     })
   return handleResponse(response);
   
 };
+
+
 
 
 

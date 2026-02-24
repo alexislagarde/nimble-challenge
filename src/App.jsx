@@ -37,7 +37,7 @@ function App() {
       {error && (
         <div style={{ color: 'red', border: '1px solid red', padding: '10px', margin: '10px 0' }}>
           <p><strong>Error:</strong> {error}</p>
-          <p>No se pudo cargar la información. Revisa el email o la API.</p>
+          
         </div>
       )}
 

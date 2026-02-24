@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { submitApplication } from "../Api/useApi";
 
-function JobList({ jobs , candidate }) {
+function JobList({ jobs , candidate , setError }) {
   
   const [repoUrl, setRepoUrl] = useState({});
 
@@ -21,23 +22,24 @@ function JobList({ jobs , candidate }) {
       return;
     }
 
-    const submitData = {
-      uuid: candidate.uuid,
-      jobId: id,
-      candidateId: candidate.candidateId,
-      repoUrl: url
-    };
+const submitData = {
+  uuid: candidate.uuid,
+  jobId: id,
+  candidateId: candidate.candidateId,
+  applicationId:candidate.applicationId,//ACA ESTA EL QUE FALTABAAA
+  repoUrl: url,
+  mail: candidate.email 
+};
 
     console.log(" Datos postulación...", submitData)
   
-  //  const result = await submitApplication(submitData);
-  //   if (result.error) {
-  //     setError(result.error); 
-  //   } else {
-  //     alert(`¡Postulación exitosa a ${title}`);
-  //     setError(null); 
-  //     setRepoUrl({ ...repoUrl, [id]: "" });
-  //   } 
+   const result = await submitApplication(submitData);
+    if (result.error) {
+      setError(result.error); 
+    } else {
+      setError(null); 
+      setRepoUrl({ ...repoUrl, [id]: "" });
+    } 
 
   };
 
