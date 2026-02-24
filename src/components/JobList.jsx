@@ -21,8 +21,8 @@ function JobList({ jobs }) {
 
   return (
     <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "20px" }}>
-      <thead>
-        <tr style={{ textAlign: "left" }}>
+      <thead style={{ textAlign: "center" }}>
+        <tr >
           <th style={styles.th}>Position Title</th>
           <th style={styles.th}>GitHub Repository URL</th>
           <th style={styles.th}>Action</th>
