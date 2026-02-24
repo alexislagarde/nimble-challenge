@@ -5,7 +5,7 @@ const handleResponse = async (promise) => {
     const response = await promise;
     
     if (!response.ok) {
-      // Si la API responde pero con error (404, 500, etc.)
+     
       return { data: null, error: `Error ${response.status}: ${response.statusText}` };
     }
 
@@ -25,6 +25,19 @@ export const fetchCandidateByEmail = async (email) => {
 export const getListJobs = async () => {
   const response = await fetch(`${BASE_URL}/api/jobs/get-list`);
   return handleResponse(response);
+};
+
+export const submitApplication = async (submitData) => {
+  
+ const response= await  fetch(`${BASE_URL}/api/candidate/apply-to-job`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(submitData),
+    })
+  return handleResponse(response);
+  
 };
 
 

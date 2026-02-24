@@ -1,22 +1,43 @@
 import { useState } from "react";
 
-function JobList({ jobs }) {
-  // Estado para los links de cada puesto
-  const [githubLinks, setGithubLinks] = useState({});
+function JobList({ jobs , candidate }) {
+  
+  const [repoUrl, setRepoUrl] = useState({});
 
   const handleChange = (id, value) => {
-    setGithubLinks({ ...githubLinks, [id]: value });
+    setRepoUrl({ ...repoUrl, [id]: value });
   };
 
-  const handleSubmit = (id, title) => {
-    const url = githubLinks[id];
+  const handleSubmit = async (id, title) => {
+    const url = repoUrl[id];
+
+
     if (!url) {
-      alert("Por favor, ingresa la URL del repositorio.");
+      alert("Por favor, ingresar la URL del repositorio.");
       return;
     }
-   
-    alert(`Postulación enviada para: ${title}`);
-   //..por aca puedo agregar el submit, ver bien
+
+    if (!candidate) {
+      alert("Error: No hay datos del candidato. Revisar el Step 2.");
+      return;
+    }
+
+    const submitData = {
+      uuid: candidate.uuid,
+      jobId: id,
+      candidateId: candidate.id,
+      repoUrl: url
+    };
+  
+   const result = await submitApplication(submitData);
+    if (result.error) {
+      setError(result.error); 
+    } else {
+      alert(`¡Postulación exitosa a ${title}`);
+      setError(null); 
+      setRepoUrl({ ...repoUrl, [id]: "" });
+    }
+
   };
 
   return (
@@ -38,7 +59,7 @@ function JobList({ jobs }) {
               <input
                 type="url"
                 placeholder="https://github.com/..."
-                value={githubLinks[job.id] || ""}
+                value={repoUrl[job.id] || ""}
                 onChange={(e) => handleChange(job.id, e.target.value)}
                 style={{ width: "90%", padding: "5px" }}
               />

@@ -52,12 +52,12 @@ function App() {
         <>
           <div>
             <h3>Step 2 — Obtener tus datos de candidato</h3>
-            <CandidateEmail candidate={candidate} />
+            <CandidateEmail candidate={candidate}  />
           </div>
 
           <div className="card-jobs">
             <h3>Step 3 y 4 — Obtener la lista de posiciones abiertas y Mostrarlas en un componente</h3>
-            <JobList jobs={jobs} />
+            <JobList jobs={jobs}  candidate={candidate} setError={setError}/>
           </div>
         </>
       )}
