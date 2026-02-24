@@ -8,9 +8,8 @@ function JobList({ jobs , candidate }) {
     setRepoUrl({ ...repoUrl, [id]: value });
   };
 
-  const handleSubmit = async (id, title) => {
+  const handleSubmit = async (id) => {
     const url = repoUrl[id];
-
 
     if (!url) {
       alert("Por favor, ingresar la URL del repositorio.");
@@ -68,7 +67,7 @@ function JobList({ jobs , candidate }) {
             </td>
             <td style={styles.td}>
               <button 
-                onClick={() => handleSubmit(job.id, job.title)}
+                onClick={() => handleSubmit(job.id)}
                 style={styles.button}
               >
                 Submit
