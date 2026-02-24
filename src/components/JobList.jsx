@@ -11,10 +11,10 @@ function JobList({ jobs }) {
   const handleSubmit = (id, title) => {
     const url = githubLinks[id];
     if (!url) {
-      alert("Por favor, ingresa la URL de tu repositorio.");
+      alert("Por favor, ingresa la URL del repositorio.");
       return;
     }
-    console.log(`Enviando: ${title} | URL: ${url}`);
+   
     alert(`Postulación enviada para: ${title}`);
    //..por aca puedo agregar el submit, ver bien
   };
@@ -23,9 +23,9 @@ function JobList({ jobs }) {
     <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "20px" }}>
       <thead style={{ textAlign: "center" }}>
         <tr >
-          <th style={styles.th}>Position Title</th>
-          <th style={styles.th}>GitHub Repository URL</th>
-          <th style={styles.th}>Action</th>
+          <th style={styles.th}>Tìtulo de la posición</th>
+          <th style={styles.th}>GitHub URL</th>
+          <th style={styles.th}>Botón</th>
         </tr>
       </thead>
       <tbody>
