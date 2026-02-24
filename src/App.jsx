@@ -56,7 +56,7 @@ return (
     </table>
   </div>
   <div className="card-jobs">
-    <h3>Step 3 — Obtener la lista de posiciones abiertas</h3>
+    <h3>Step 3 y 4 — Obtener la lista de posiciones abiertas y Mostrarlas en un componente</h3>
        <JobList jobs={jobs} />
 
   </div>
