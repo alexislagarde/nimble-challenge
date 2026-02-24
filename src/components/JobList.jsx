@@ -25,18 +25,20 @@ function JobList({ jobs , candidate }) {
     const submitData = {
       uuid: candidate.uuid,
       jobId: id,
-      candidateId: candidate.id,
+      candidateId: candidate.candidateId,
       repoUrl: url
     };
+
+    console.log(" Datos postulación...", submitData)
   
-   const result = await submitApplication(submitData);
-    if (result.error) {
-      setError(result.error); 
-    } else {
-      alert(`¡Postulación exitosa a ${title}`);
-      setError(null); 
-      setRepoUrl({ ...repoUrl, [id]: "" });
-    }
+  //  const result = await submitApplication(submitData);
+  //   if (result.error) {
+  //     setError(result.error); 
+  //   } else {
+  //     alert(`¡Postulación exitosa a ${title}`);
+  //     setError(null); 
+  //     setRepoUrl({ ...repoUrl, [id]: "" });
+  //   } 
 
   };
 
