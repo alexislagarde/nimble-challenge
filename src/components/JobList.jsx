@@ -37,6 +37,7 @@ const submitData = {
     if (result.error) {
       setError(result.error); 
     } else {
+      alert("Postulación exitosa!");
       setError(null); 
       setRepoUrl({ ...repoUrl, [id]: "" });
     } 
